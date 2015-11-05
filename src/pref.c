@@ -104,14 +104,14 @@ void load_preferences()
         color = g_key_file_get_string(kf, "General", "bg", NULL);
         if( color )
         {
-            gdk_color_parse(color, &pref.bg);
+            gdk_rgba_parse(&pref.bg, color);
             g_free(color);
         }
 
         color = g_key_file_get_string(kf, "General", "bg_full", NULL);
         if( color )
         {
-            gdk_color_parse(color, &pref.bg_full);
+            gdk_rgba_parse(&pref.bg_full, color);
             g_free(color);
         }
     }
@@ -175,7 +175,7 @@ static void on_set_default( GtkButton* btn, gpointer user_data )
 static void on_set_bg( GtkColorButton* btn, gpointer user_data )
 {
     MainWin* parent=(MainWin*)user_data;
-    gtk_color_button_get_color(GTK_COLOR_BUTTON(btn), &pref.bg);
+    gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(btn), &pref.bg);
     if( !parent->full_screen )
     {
         gtk_widget_override_background_color( parent->evt_box, GTK_STATE_NORMAL, &pref.bg );
@@ -186,7 +186,7 @@ static void on_set_bg( GtkColorButton* btn, gpointer user_data )
 static void on_set_bg_full( GtkColorButton* btn, gpointer user_data )
 {
     MainWin* parent=(MainWin*)user_data;
-    gtk_color_button_get_color(GTK_COLOR_BUTTON(btn), &pref.bg_full);
+    gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(btn), &pref.bg_full);
     if( parent->full_screen )
     {
         gtk_widget_override_background_color( parent->evt_box, GTK_STATE_NORMAL, &pref.bg_full );
@@ -224,11 +224,11 @@ void edit_preferences( GtkWindow* parent )
     g_signal_connect( set_default_btn, "clicked", G_CALLBACK(on_set_default), parent );
 
     bg_btn = (GtkWidget*)gtk_builder_get_object(builder, "bg");
-    gtk_color_button_set_color(GTK_COLOR_BUTTON(bg_btn), &pref.bg);
+    gtk_color_chooser_set_rgba(GTK_COLOR_CHOOSER(bg_btn), &pref.bg);
     g_signal_connect( bg_btn, "color-set", G_CALLBACK(on_set_bg), parent );
 
     bg_full_btn = (GtkWidget*)gtk_builder_get_object(builder, "bg_full");
-    gtk_color_button_set_color(GTK_COLOR_BUTTON(bg_full_btn), &pref.bg_full);
+    gtk_color_chooser_set_rgba(GTK_COLOR_CHOOSER(bg_full_btn), &pref.bg_full);
     g_signal_connect( bg_full_btn, "color-set", G_CALLBACK(on_set_bg_full), parent );
 
     g_object_unref( builder );

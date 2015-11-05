@@ -34,8 +34,8 @@ typedef struct _Pref
     gboolean ask_before_delete;
     gboolean open_maximized;
     int slide_delay;
-    GdkColor bg;
-    GdkColor bg_full;
+    GdkRGBA bg;
+    GdkRGBA bg_full;
 
     int jpg_quality;
     int png_compression;

@@ -178,7 +178,7 @@ static void on_set_bg( GtkColorButton* btn, gpointer user_data )
     gtk_color_button_get_color(GTK_COLOR_BUTTON(btn), &pref.bg);
     if( !parent->full_screen )
     {
-        gtk_widget_modify_bg( parent->evt_box, GTK_STATE_NORMAL, &pref.bg );
+        gtk_widget_override_background_color( parent->evt_box, GTK_STATE_NORMAL, &pref.bg );
         gtk_widget_queue_draw(parent->evt_box );
     }
 }
@@ -189,7 +189,7 @@ static void on_set_bg_full( GtkColorButton* btn, gpointer user_data )
     gtk_color_button_get_color(GTK_COLOR_BUTTON(btn), &pref.bg_full);
     if( parent->full_screen )
     {
-        gtk_widget_modify_bg( parent->evt_box, GTK_STATE_NORMAL, &pref.bg_full );
+        gtk_widget_override_background_color( parent->evt_box, GTK_STATE_NORMAL, &pref.bg_full );
         gtk_widget_queue_draw(parent->evt_box );
     }
 }

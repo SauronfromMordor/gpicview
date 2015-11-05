@@ -196,7 +196,7 @@ void main_win_init( MainWin*mw )
     g_signal_connect( mw->evt_box, "scroll-event", G_CALLBACK(on_scroll_event), mw );
     // Set bg color to white
 
-    gtk_widget_modify_bg( mw->evt_box, GTK_STATE_NORMAL, &pref.bg );
+    gtk_widget_override_background_color( mw->evt_box, GTK_STATE_NORMAL, &pref.bg );
 
     mw->img_view = image_view_new();
     gtk_container_add( (GtkContainer*)mw->evt_box, (GtkWidget*)mw->img_view);
@@ -557,13 +557,13 @@ gboolean on_win_state_event( GtkWidget* widget, GdkEventWindowState* state )
     MainWin* mw = (MainWin*)widget;
     if( (state->new_window_state & GDK_WINDOW_STATE_FULLSCREEN) != 0 )
     {
-        gtk_widget_modify_bg( mw->evt_box, GTK_STATE_NORMAL, &pref.bg_full );
+        gtk_widget_override_background_color( mw->evt_box, GTK_STATE_NORMAL, &pref.bg_full );
         gtk_widget_hide( gtk_widget_get_parent(mw->nav_bar) );
         mw->full_screen = TRUE;
     }
     else
     {
-        gtk_widget_modify_bg( mw->evt_box, GTK_STATE_NORMAL, &pref.bg );
+        gtk_widget_override_background_color( mw->evt_box, GTK_STATE_NORMAL, &pref.bg );
         if (pref.show_toolbar)
             gtk_widget_show( gtk_widget_get_parent(mw->nav_bar) );
         mw->full_screen = FALSE;

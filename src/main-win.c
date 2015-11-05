@@ -269,13 +269,13 @@ void main_win_init( MainWin*mw )
 
 void create_nav_bar( MainWin* mw, GtkWidget* box )
 {
-    mw->nav_bar = gtk_hbox_new( FALSE, 0 );
+    mw->nav_bar = gtk_box_new( GTK_ORIENTATION_HORIZONTAL, 0 );
 
     add_nav_btn( mw, GTK_STOCK_GO_BACK, _("Previous"), G_CALLBACK(on_prev), FALSE );
     add_nav_btn( mw, GTK_STOCK_GO_FORWARD, _("Next"), G_CALLBACK(on_next), FALSE );
     mw->btn_play_stop = add_nav_btn_img( mw, GTK_STOCK_MEDIA_PLAY, _("Start Slideshow"), G_CALLBACK(on_slideshow), TRUE, &mw->img_play_stop );
 
-    gtk_box_pack_start( (GtkBox*)mw->nav_bar, gtk_vseparator_new(), FALSE, FALSE, 0 );
+    gtk_box_pack_start( (GtkBox*)mw->nav_bar, gtk_separator_new(GTK_ORIENTATION_VERTICAL), FALSE, FALSE, 0 );
 
     add_nav_btn( mw, GTK_STOCK_ZOOM_OUT, _("Zoom Out"), G_CALLBACK(on_zoom_out), FALSE );
     add_nav_btn( mw, GTK_STOCK_ZOOM_IN, _("Zoom In"), G_CALLBACK(on_zoom_in), FALSE );
@@ -296,7 +296,7 @@ void create_nav_bar( MainWin* mw, GtkWidget* box )
 #endif
     add_nav_btn( mw, GTK_STOCK_FULLSCREEN, _("Full Screen"), G_CALLBACK(on_full_screen), FALSE );   // gtk+ 2.8+
 
-    gtk_box_pack_start( (GtkBox*)mw->nav_bar, gtk_vseparator_new(), FALSE, FALSE, 0 );
+    gtk_box_pack_start( (GtkBox*)mw->nav_bar, gtk_separator_new(GTK_ORIENTATION_VERTICAL), FALSE, FALSE, 0 );
 
     mw->btn_rotate_ccw = add_nav_btn( mw, "object-rotate-left", _("Rotate Counterclockwise"), G_CALLBACK(on_rotate_counterclockwise), FALSE );
     mw->btn_rotate_cw = add_nav_btn( mw, "object-rotate-right", _("Rotate Clockwise"), G_CALLBACK(on_rotate_clockwise), FALSE );
@@ -304,14 +304,14 @@ void create_nav_bar( MainWin* mw, GtkWidget* box )
     mw->btn_flip_h = add_nav_btn( mw, "object-flip-horizontal", _("Flip Horizontal"), G_CALLBACK(on_flip_horizontal), FALSE );
     mw->btn_flip_v = add_nav_btn( mw, "object-flip-vertical", _("Flip Vertical"), G_CALLBACK(on_flip_vertical), FALSE );
 
-    gtk_box_pack_start( (GtkBox*)mw->nav_bar, gtk_vseparator_new(), FALSE, FALSE, 0 );
+    gtk_box_pack_start( (GtkBox*)mw->nav_bar, gtk_separator_new(GTK_ORIENTATION_VERTICAL), FALSE, FALSE, 0 );
 
     add_nav_btn( mw, GTK_STOCK_OPEN, _("Open File"), G_CALLBACK(on_open), FALSE );
     add_nav_btn( mw, GTK_STOCK_SAVE, _("Save File"), G_CALLBACK(on_save), FALSE );
     add_nav_btn( mw, GTK_STOCK_SAVE_AS, _("Save File As"), G_CALLBACK(on_save_as), FALSE );
     add_nav_btn( mw, GTK_STOCK_DELETE, _("Delete File"), G_CALLBACK(on_delete), FALSE );
 
-    gtk_box_pack_start( (GtkBox*)mw->nav_bar, gtk_vseparator_new(), FALSE, FALSE, 0 );
+    gtk_box_pack_start( (GtkBox*)mw->nav_bar, gtk_separator_new(GTK_ORIENTATION_VERTICAL), FALSE, FALSE, 0 );
     add_nav_btn( mw, GTK_STOCK_PREFERENCES, _("Preferences"), G_CALLBACK(on_preference), FALSE );
     add_nav_btn( mw, GTK_STOCK_QUIT, _("Quit"), G_CALLBACK(on_quit), FALSE );
 

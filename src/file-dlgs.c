@@ -25,6 +25,21 @@
 #include "file-dlgs.h"
 #include "pref.h"
 
+
+/*
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
+
 static void on_update_preview( GtkFileChooser *chooser, GtkImage* img )
 {
     char* file = gtk_file_chooser_get_preview_filename( chooser );
